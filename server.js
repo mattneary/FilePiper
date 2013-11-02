@@ -86,13 +86,9 @@ server.on('connection', function(client){
 
   // Incoming stream from browsers
   client.on('stream', function(stream, meta){
-    console.log("client", meta);
     // TODO: pipe very latent one way
     // TODO: sending a file closes a stream
     if( meta.type === "message" ) {
-      stream.on("data", function(data) {
-        console.log("data", data);
-      });  
       listeners.push({
         stream: stream,
         channel: channel,
@@ -105,11 +101,9 @@ server.on('connection', function(client){
       var count = clients.map(function(data) {
         var peer = data.client;
         if( peer !== client && channel == data.channel && peer._socket.readyState == 1 ) {  
-          console.log("[WATCHER]");
           var watcher = peer.createStream({size: meta.size, name: meta.name});
           stream.pipe(watcher);
           stream.on("end", function() {
-            console.log("end");
             watcher.end();
           });
           return 1;
@@ -128,7 +122,6 @@ server.on('connection', function(client){
     }
   });
   client.on('close', function() {
-    console.log("close");
     var client = this;
     var spot = clients.indexOf({
       client: client,
