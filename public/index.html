@@ -1519,7 +1519,7 @@
   </script>
   <script>
   	var channel = location.href.split("/").pop() || "public";
-    var client = new BinaryClient('ws://filepiper.com/'+channel);
+    var client = new BinaryClient('ws://surg.co/'+channel);
     
     client.on('close', function() {
     	$("#box span").html("Your session expired! <a href='' class='refr'>Refresh</a>.");
