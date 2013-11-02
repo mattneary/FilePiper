@@ -3,8 +3,6 @@ var fs = require('fs');
 var app = require("http").createServer(handler);
 var crypto = require('crypto');
 
-exports.module = app;
-
 function nextLetter($str) {
     return ('z' === $str ? 'a' : String.fromCharCode($str.charCodeAt(0)+1));
 }
@@ -21,7 +19,6 @@ function getNextShortURL($s) {
     return $a.join("");
 }
 function handler (req, res) {
-	console.log("req");
 	if( req.url == "/link-allocator/" ) {
 		fs.readFile(__dirname + "/shortlink.txt", function(err, data) {
 			var link = getNextShortURL(""+data||"abcd");
@@ -144,3 +141,4 @@ server.on('connection', function(client){
 		notify_user_count(listeners);
 	});
 });
+exports.module = app;
