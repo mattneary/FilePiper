@@ -1,0 +1,86 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+		<style>
+			body {
+				padding: 0;margin: 0;
+				font-family: sans-serif;	
+				color: white;	
+			}	
+			#box, #box2 {
+				background: #00d6bd;		
+				position: relative;
+				width: 100%; 
+				height: 50%;
+				padding: 20px;
+				box-sizing: border-box;
+			}
+			#box2 {
+				background: #d6004f;
+			}			
+			#box p, #box2 p {
+				width: 400px;
+				text-align: justify;
+			}
+			#box2 input {
+				outline: none;
+				border-radius: 3px;
+				border: 1px solid #333;
+				height: 40px;
+				font-size: 20px;
+			}
+			#box2 #shortlink {
+				width: 430px;
+				padding: 0px 5px;				
+			}
+		</style>
+		<div id="box">
+		  <h1>filepiper.com</h1>
+		  <p>filepiper is a person-to-person file transporter based on the <a href="http://www.w3.org/TR/FileAPI/">HTML5 File API</a> and <a href="http://binaryjs.com/">BinaryJS</a> with a <a href="http://nodejs.org/">Node.js</a> backend. P2P file transfer cuts out the middle man and thus halves the transfer time. Broadcast files across a private session as if moving a file to a different folder.</p>
+		</div>
+		<div id="box2">
+			<h2>Start a Session</h2>
+			<form action="http://filepiper.com/95f324cd2e7f331f">
+				<input type="text" id="shortlink" value="http://filepiper.com/95f324cd2e7f331f">
+				<input type="submit" value="start!">
+			</form>
+			<p>Share this link by email, text, twitter or facebook. And use it everyday!</p>
+		</div>
+		<script>
+			var req = new XMLHttpRequest();
+			req.open('GET', "/link-allocator/", true);
+			req.onreadystatechange = function (aEvt) {
+				if (req.readyState == 4) {
+					if(req.status == 200) {
+						var resp = req.responseText;
+						document.getElementsByTagName("form")[0].action = "http://filepiper.com/"+resp;
+						document.getElementById("shortlink").value = "http://filepiper.com/"+resp;
+					}
+					else
+						dump("Erreur pendant le chargement de la page.\n");
+				}
+			};
+			req.send(null); 
+			document.getElementsByTagName("form")[0].onsubmit = function() {
+				location.href = this.action;
+				return false;
+			};
+		</script>
+		<script type="text/javascript">
+		
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-19294089-9']);
+		  _gaq.push(['_trackPageview']);
+		
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		
+		</script>
+	</body>
+</html>
