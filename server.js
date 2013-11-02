@@ -1,4 +1,4 @@
-var io = require('socket.io').listen(8081, { log: false }),
+var io = require('socket.io').listen(3034, { log: false }),
 	http = require('http'),
 	fs = require('fs'),
 	crypto = require('crypto');
